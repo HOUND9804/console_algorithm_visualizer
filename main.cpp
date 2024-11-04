@@ -2,7 +2,7 @@
 #include "AVLTree.h"
 #include "Grid.h"
 #include "BFS.h"  // Include BFS header
-
+#include "DFS.h"
 using namespace std;
 
 int main() {
@@ -49,6 +49,7 @@ int main() {
                 cout << "Choose grid action:\n";
                 cout << "1. Display grid\n";
                 cout << "2. Perform BFS\n";
+                cout << "3. Perform DFS\n";
                 int gridAction;
                 cin >> gridAction;
 
@@ -63,6 +64,14 @@ int main() {
                         cin >> startX >> startY;
                         BFS bfs(grid);
                         bfs.search(startX, startY);
+                        break;
+                    }
+                    case 3:{
+                        int startX, startY;
+                        cout << "Enter starting coordinates (row and column): ";
+                        cin >> startX >> startY;
+                        DFS dfs(grid);
+                        dfs.search(startX, startY);
                         break;
                     }
                     default:
