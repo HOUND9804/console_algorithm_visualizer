@@ -3,6 +3,7 @@
 #include "Grid.h"
 #include "BFS.h"  // Include BFS header
 #include "DFS.h"
+#include"Dijkstra.h"
 using namespace std;
 
 int main() {
@@ -50,6 +51,7 @@ int main() {
                 cout << "1. Display grid\n";
                 cout << "2. Perform BFS\n";
                 cout << "3. Perform DFS\n";
+                cout << "4. Find shortest path with Dijkstra's algorithm\n";
                 int gridAction;
                 cin >> gridAction;
 
@@ -72,6 +74,17 @@ int main() {
                         cin >> startX >> startY;
                         DFS dfs(grid);
                         dfs.search(startX, startY);
+                        break;
+                    }
+                    case 4: {
+                        int startX, startY, endX, endY;
+                        cout << "Enter starting coordinates (row and column): ";
+                        cin >> startX >> startY;
+                        cout << "Enter ending coordinates (row and column): ";
+                        cin >> endX >> endY;
+
+                        Dijkstra dijkstra(grid);
+                        dijkstra.search(startX, startY, endX, endY);
                         break;
                     }
                     default:

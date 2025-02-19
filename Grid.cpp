@@ -27,6 +27,9 @@ void Grid::printGrid() const {
             if(cell=='V'){
                 Color::set(3); // Assuming Color is a class handling console colors
             }
+            else if(cell=='P'){
+                Color::set(4);
+            }
             else{
                 Color::reset();
             }
@@ -37,6 +40,13 @@ void Grid::printGrid() const {
     cout << endl;
 }
 
+#include <cstdlib> // for system()
+
 void Grid::clearConsole() const {
-    cout << "\033[2J\033[H"; // ANSI escape sequence to clear the console
+#ifdef _WIN32
+    system("cls"); 
+#else
+    system("clear");
+#endif
 }
+
