@@ -1,9 +1,10 @@
 #include <iostream>
 #include "AVLTree.h"
 #include "Grid.h"
-#include "BFS.h"  // Include BFS header
+#include "BFS.h" 
 #include "DFS.h"
-#include"Dijkstra.h"
+#include "Dijkstra.h"
+#include "MergeSortVisualizer.h"
 using namespace std;
 
 int main() {
@@ -13,6 +14,7 @@ int main() {
         cout << "Choose an option:\n";
         cout << "1. Use AVL Tree\n";
         cout << "2. Use Grid\n";
+        cout << "3. Use Sort\n";
         cout << "0. Exit\n";
         cin >> choice;
 
@@ -93,8 +95,46 @@ int main() {
                 }
                 break;
             }
+            
+            case 3:{
+                cout<<"Enter an array of length less than 20 \n";
+                cout<<"Enter size of the array \n";
+                int n;
+                cin>>n;
+                cout<<"Enter the array\n";
+                vector<int>a(n);
+                for(int i=0;i<n;i++){
+                    cin>>a[i];
+                }
+                cout << "Choose an option:\n";
+                cout << "1. Use Merge Sort\n";
+                cout << "2. Use Bubble Sort\n";
+                cout << "3. Use Insertion Sort\n";
+                
+                int sortingOption;
+                cin>>sortingOption;
+
+                switch (sortingOption) {
+                    case 1: {
+                        MergeSortVisualizer msv(a);
+                        msv.sort(); // FIXED: Now it executes the sorting
+                        break;
+                    }
+                    case 2: {
+                        cout << "Bubble Sort is not implemented yet!\n";
+                        break;
+                    }
+                    case 3: {
+                        cout << "Insertion Sort is not implemented yet!\n";
+                        break;
+                    }
+                    default:
+                        cout << "Invalid option. Returning to main menu.\n";
+                        break;
+                }
+            }
             default:
-                cout << "Invalid option. Please try again.\n";
+            cout << "Invalid option. Please try again.\n";
         }
     }
     return 0; // End of the program
