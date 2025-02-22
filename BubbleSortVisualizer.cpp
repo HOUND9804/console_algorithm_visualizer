@@ -7,6 +7,8 @@ BubbleSortVisualizer::BubbleSortVisualizer(const vector<int>& inputArr)
 
 void BubbleSortVisualizer::printArray(int highlightedIndex1, int highlightedIndex2) const {
     cout << "\nCurrent Array State:\n";
+    cout << " Red represents sorted elements.\n";
+    cout << " Green represents elements being swapped (transition phase).\n";
     for (size_t i = 0; i < arr.size(); ++i) {
         if (i == highlightedIndex1 || i == highlightedIndex2) {
             Color::set(10); // Green for elements being swapped (transition)
@@ -25,8 +27,6 @@ void BubbleSortVisualizer::printArray(int highlightedIndex1, int highlightedInde
 void BubbleSortVisualizer::bubbleSort() {
     int n = arr.size();
     cout << "\nSorting process started...\n";
-    cout << " Red represents sorted elements.\n";
-    cout << " Green represents elements being swapped (transition phase).\n";
 
     for (int i = 0; i < n - 1; ++i) {
         bool swapped = false;
@@ -35,7 +35,7 @@ void BubbleSortVisualizer::bubbleSort() {
                 swap(arr[j], arr[j + 1]);
                 swapped = true;
                 printArray(j, j + 1); // Highlight elements being swapped in green
-                this_thread::sleep_for(chrono::milliseconds(500));
+                this_thread::sleep_for(chrono::milliseconds(1000));
             }
         }
         colored[n - i - 1] = true; // Mark last sorted element in red
