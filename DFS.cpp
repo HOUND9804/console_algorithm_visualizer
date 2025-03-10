@@ -1,6 +1,6 @@
 #include "DFS.h"
 #include <iostream>
-#include <stack>
+#include "MyStack.h"
 
 using namespace std;
 
@@ -12,11 +12,11 @@ void DFS::search(int startX, int startY) {
         return;
     }
 
-    stack<pair<int, int>> s;
+    MyStack<pair<int, int>> s;
     s.push({startX, startY});
     visited[startX][startY] = true;
 
-    while (!s.empty()) {
+    while (!s.isEmpty()) { //Changed the name of the method in MyStack class empty to isEmpty
         auto [x, y] = s.top();
         s.pop();
 
