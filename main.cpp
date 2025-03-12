@@ -46,7 +46,7 @@ int main() {
             }
             case 2: { // Grid functionality
                 int r, c;
-                cout << "Enter number of rows and columns for grid: ";
+                cout << "Enter number of rows and columns for  the grid: ";
                 cin >> r >> c;
 
                 Grid grid(r, c);
@@ -57,7 +57,7 @@ int main() {
                 cout << "1. Display grid\n";
                 cout << "2. Perform BFS\n";
                 cout << "3. Perform DFS\n";
-                cout << "4. Find shortest path with Dijkstra's algorithm\n";
+                cout << "4. Find the shortest path with Dijkstra's algorithm\n";
                 int gridAction;
                 cin >> gridAction;
 
