@@ -8,14 +8,14 @@ void MyQueue<T>::enqueue(const T& value) {
 template <typename T>
 void MyQueue<T>::dequeue() {
     if (!isEmpty()) {
-        queue.erase(queue.begin());  // Remove from the front
+        queue.erase(queue.begin());  // Remove from the front.
     }
 }
 
 template <typename T>
 T MyQueue<T>::front() const {
     if (!isEmpty()) {
-        return queue.front();  // Return the front element
+        return queue.front();  // Return the front element.
     }
     throw std::out_of_range("Queue is empty");
 }
