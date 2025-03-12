@@ -17,5 +17,5 @@ public:
     bool isEmpty() const;
 };
 
-#include "MyStack.cpp" // Include implementation file
+#include "MyStack.cpp" // Include implementation file.
 #endif // MYSTACK_H
