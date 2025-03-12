@@ -2,25 +2,22 @@
 
 template <typename T>
 void MyQueue<T>::enqueue(const T& value) {
-    queue.push_back(value);  // Add element to the back of the queue
+    queue.push_back(value);  // Insert at the back
 }
 
 template <typename T>
 void MyQueue<T>::dequeue() {
-    if (!queue.empty()) {
-        queue.pop_front();  // Remove element from the front of the queue
-    } else {
-        std::cerr << "Queue is empty! Cannot dequeue.\n";
+    if (!isEmpty()) {
+        queue.erase(queue.begin());  // Remove from the front
     }
 }
 
 template <typename T>
 T MyQueue<T>::front() const {
-    if (!queue.empty()) {
-        return queue.front();  // Return the front element without removing it
-    } else {
-        throw std::out_of_range("Queue is empty");
+    if (!isEmpty()) {
+        return queue.front();  // Return the front element
     }
+    throw std::out_of_range("Queue is empty");
 }
 
 template <typename T>
@@ -32,7 +29,3 @@ template <typename T>
 size_t MyQueue<T>::size() const {
     return queue.size();  // Return the size of the queue
 }
-
-// Explicit template instantiation for common types
-template class MyQueue<int>;
-template class MyQueue<std::pair<int, int>>;
