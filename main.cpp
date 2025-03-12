@@ -5,6 +5,8 @@
 #include "DFS.h"
 #include "Dijkstra.h"
 #include "MergeSortVisualizer.h"
+#include "BubbleSortVisualizer.h"
+#include "InsertionSortVisualizer.h"
 using namespace std;
 
 int main() {
@@ -121,11 +123,14 @@ int main() {
                         break;
                     }
                     case 2: {
-                        cout << "Bubble Sort is not implemented yet!\n";
+                         BubbleSortVisualizer bsv(a);
+                         bsv.sort();
+                
                         break;
                     }
                     case 3: {
-                        cout << "Insertion Sort is not implemented yet!\n";
+                        InsertionSortVisualizer isv(a);
+                        isv.sort();
                         break;
                     }
                     default:
