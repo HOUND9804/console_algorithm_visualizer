@@ -10,7 +10,7 @@ void MyStack<T>::pop() {
     if (!stack.empty()) {
         stack.pop_back();
     } else {
-        std::cerr << "Stack is empty! Cannot pop.\n";
+        std::cerr << "Stack is empty !! Cannot pop.\n";
     }
 }
 
