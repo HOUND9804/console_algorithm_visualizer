@@ -12,8 +12,8 @@ void BFS::search(int startX, int startY) {
         return;
     }
 
-    MyQueue<pair<int, int>> q;  // Change queue to MyQueue
-    q.enqueue({startX, startY}); // Use MyQueue's enqueue method
+    MyQueue<pair<int, int>> q;  // Changed queue to MyQueue.
+    q.enqueue({startX, startY}); // Use MyQueue's enqueue method.
     visited[startX][startY] = true;
 
     while (!q.isEmpty()) {  // Check if MyQueue is empty
