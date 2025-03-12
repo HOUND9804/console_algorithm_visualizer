@@ -90,7 +90,7 @@ typename AVLTree<T>::Node* AVLTree<T>::insert(Node* node, const T& value) {
     else if (value > node->value)
         node->right = insert(node->right, value);
     else
-        return node; // Duplicate values are not allowed
+        return node; // Duplicate values are not allowed.
 
     // Update height
     node->height = 1 + std::max(height(node->left), height(node->right));
