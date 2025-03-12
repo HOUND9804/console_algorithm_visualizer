@@ -25,7 +25,7 @@ void Grid::printGrid() const {
     for (const auto& row : grid) {
         for (char cell : row) {
             if(cell=='V'){
-                Color::set(3); // Assuming Color is a class handling console colors
+                Color::set(3); // Assuming Color is a class handling console colors.
             }
             else if(cell=='P'){
                 Color::set(4);
