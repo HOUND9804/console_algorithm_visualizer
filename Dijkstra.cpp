@@ -82,6 +82,7 @@ void Dijkstra::search(int startX, int startY, int endX, int endY) {
         grid(startX, startY) = 'S';  // Start position
         grid(endX, endY) = 'E';      // End position
         grid.printGrid();
+        cout << "\nStart (S) = Start point, End (E) = End point, Path (P) = Shortest path\n";  // Display key points
     } else {
         cout << "No path found from start to end.\n";
     }
