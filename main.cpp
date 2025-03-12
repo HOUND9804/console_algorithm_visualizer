@@ -22,11 +22,11 @@ int main() {
 
         if (choice == 0) {
             cout << "Exiting the program.\n";
-            break; // Exit the loop to terminate the program
+            break; // Exit the loop to terminate the program.
         }
 
         switch (choice) {
-            case 1: { // AVL Tree functionality
+            case 1: { // AVL Tree functionality.
                 AVLTree<int> tree;
                 int n;
                 while (true) {
