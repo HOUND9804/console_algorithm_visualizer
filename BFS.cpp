@@ -1,5 +1,6 @@
 #include "BFS.h"
 #include <iostream>
+#include "MyQueue.h"  // Include MyQueue header
 
 BFS::BFS(Grid& g) : grid(g), visited(g.getRows(), std::vector<bool>(g.getCols(), false)) {}
 
@@ -11,13 +12,13 @@ void BFS::search(int startX, int startY) {
         return;
     }
 
-    queue<pair<int, int>> q;
-    q.push({startX, startY});
+    MyQueue<pair<int, int>> q;  // Change queue to MyQueue
+    q.enqueue({startX, startY}); // Use MyQueue's enqueue method
     visited[startX][startY] = true;
 
-    while (!q.empty()) {
-        auto [x, y] = q.front();
-        q.pop();
+    while (!q.isEmpty()) {  // Check if MyQueue is empty
+        auto [x, y] = q.front();  // Use MyQueue's front method
+        q.dequeue();  // Use MyQueue's dequeue method
 
         grid(x, y) = 'V';
         grid.printGrid();
@@ -32,8 +33,8 @@ void BFS::search(int startX, int startY) {
 
             if (newX >= 0 && newX < grid.getRows() && newY >= 0 && newY < grid.getCols() &&
                 !visited[newX][newY] && grid(newX, newY) == '.') {
-                q.push({newX, newY});
-                grid(newX,newY)='p';
+                q.enqueue({newX, newY});  // Use MyQueue's enqueue method
+                grid(newX, newY) = 'p';
                 visited[newX][newY] = true;
             }
         }
