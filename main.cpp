@@ -30,15 +30,17 @@ int main() {
                 AVLTree<int> tree;
                 int n;
                 while (true) {
-                    cout << "Enter a number to insert into the AVL tree (-1 to exit): ";
-                    cin >> n;
-                    if (n == -1) {
-                        cout << "EXIT\n";
-                        break;
-                    } else {
+                    cout<<"Enter node number : ";
+                    int nodeNum;
+                    cin>>nodeNum;
+                    for (int i = 0; i < nodeNum; i++) {
+                        cout << "Enter a number to insert into the AVL tree: ";
+                        int n;
+                        cin >> n;
                         tree.insert(n);
                         tree.displayTree();
                     }
+                    break;
                 }
                 break;
             }
@@ -123,9 +125,8 @@ int main() {
                         break;
                     }
                     case 2: {
-                         BubbleSortVisualizer bsv(a);
-                         bsv.sort();
-                
+                        BubbleSortVisualizer bsv(a);
+                        bsv.sort();
                         break;
                     }
                     case 3: {
