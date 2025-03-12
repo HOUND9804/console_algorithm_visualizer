@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/User/ProjectTesting/console_algorithm_visualizer",
-      "program": "c:/Users/User/ProjectTesting/console_algorithm_visualizer/build/Debug/outDebug",
+      "cwd": "c:/Users/User/Zawad/console_algorithm_visualizer",
+      "program": "c:/Users/User/Zawad/console_algorithm_visualizer/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
