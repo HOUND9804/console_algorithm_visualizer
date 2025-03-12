@@ -9,14 +9,14 @@ void InsertionSortVisualizer::printArray(int highlightedIndex1, int highlightedI
     cout << "\nCurrent Array State:\n";
     for (size_t i = 0; i < arr.size(); ++i) {
         if (i == highlightedIndex1 || i == highlightedIndex2) {
-            Color::set(10); // Green for elements being moved
+            Color::set(10); // Green for  the elements being moved
         } else if (colored[i]) {
-            Color::set(12); // Red for sorted elements
+            Color::set(12); // Red for the sorted elements
         } else {
             Color::reset();
         }
         string bars(arr[i], '#');
-        cout << bars << " (" << arr[i] << ")\n";  // Display hash count
+        cout << bars << " (" << arr[i] << ")\n";  // Display the hash count
     }
     Color::reset();
     cout << endl;
