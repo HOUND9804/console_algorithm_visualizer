@@ -25,8 +25,8 @@ void InsertionSortVisualizer::printArray(int highlightedIndex1, int highlightedI
 void InsertionSortVisualizer::insertionSort() {
     int n = arr.size();
     cout << "\nSorting process started...\n";
-    cout << " Red represents sorted elements.\n";
-    cout << " Green represents elements being moved during sorting.\n\n";
+    cout << " Red represents the sorted elements.\n";
+    cout << " Green represents the elements being moved during sorting.\n\n";
 
     for (int i = 1; i < n; ++i) {
         int key = arr[i];
