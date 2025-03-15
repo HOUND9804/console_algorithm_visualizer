@@ -1,7 +1,7 @@
 #include "Dijkstra.h"
 #include <iostream>
 #include <queue>
-#include <unordered_map>
+#include "My_Unordered_Map.h"
 #include <thread>
 #include <chrono>
 #include <limits>
@@ -21,7 +21,7 @@ void Dijkstra::search(int startX, int startY, int endX, int endY) {
 
     // Min-heap priority queue storing pairs of {distance, {x, y}}
     priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<>> pq;
-    unordered_map<pair<int, int>, pair<int, int>, hash_pair> parent;  // Track the path for backtracking
+    My_Unordered_Map<pair<int, int>, pair<int, int>> parent;  // Track the path for backtracking
 
     // Initialize the start position
     pq.push({0, {startX, startY}});
