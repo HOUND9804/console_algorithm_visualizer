@@ -1,16 +1,20 @@
 #ifndef MYSTACK_H
 #define MYSTACK_H
-
-#include <vector>
 #include <iostream>
 
 template <typename T>
 class MyStack {
 private:
-    std::vector<T> stack;
+    T* stack;
+    int capacity;
+    int size;
+
+    void resize();
 
 public:
-    MyStack() = default;
+    MyStack();
+    ~MyStack();
+
     void push(const T& value);
     void pop();
     T top() const;
@@ -18,5 +22,5 @@ public:
 };
 
 #include "MyStack.cpp" // Include implementation file
-#endif // MYSTACK_H
 
+#endif // MYSTACK_H
