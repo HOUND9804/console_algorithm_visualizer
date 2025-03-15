@@ -1,5 +1,6 @@
 #include "BFS.h"
 #include <iostream>
+#include "MyQueue.h"
 
 BFS::BFS(Grid& g) : grid(g), visited(g.getRows(), std::vector<bool>(g.getCols(), false)) {}
 
@@ -11,7 +12,7 @@ void BFS::search(int startX, int startY) {
         return;
     }
 
-    queue<pair<int, int>> q;
+    MyQueue<pair<int, int>> q;
     q.push({startX, startY});
     visited[startX][startY] = true;
 
