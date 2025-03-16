@@ -16,7 +16,7 @@ void DFS::search(int startX, int startY) {
     s.push({startX, startY});
     visited[startX][startY] = true;
 
-    while (!s.isEmpty()) {
+    while (!s.isEmpty()) { //Changed the name of the method in MyStack class empty to isEmpty and so on
         auto [x, y] = s.top();
         s.pop();
 
@@ -36,7 +36,6 @@ void DFS::search(int startX, int startY) {
                 visited[newX][newY] = true;
             }
             grid.printGrid(newX,newY);
-            this_thread::sleep_for(chrono::milliseconds(500));
         }
     }
 }

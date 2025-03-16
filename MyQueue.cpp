@@ -1,38 +1,69 @@
 #include "MyQueue.h"
 
 template <typename T>
+MyQueue<T>::MyQueue() : frontNode(nullptr), rearNode(nullptr) {}
+
+template <typename T>
+MyQueue<T>::~MyQueue() {
+    while (!isEmpty()) {
+        dequeue();
+    }
+}
+
+template <typename T>
 void MyQueue<T>::enqueue(const T& value) {
-    queue.push_back(value);  // Add element to the back of the queue
+    Node* newNode = new Node(value);
+    if (rearNode) {
+        rearNode->next = newNode;
+    }
+    rearNode = newNode;
+    if (!frontNode) {
+        frontNode = newNode;
+    }
 }
 
 template <typename T>
 void MyQueue<T>::dequeue() {
-    if (!queue.empty()) {
-        queue.pop_front();  // Remove element from the front of the queue
-    } else {
-        std::cerr << "Queue is empty! Cannot dequeue.\n";
+    if (isEmpty()) {
+        std::cout << "Queue is empty. Cannot dequeue.\n";
+        return;
     }
+    Node* temp = frontNode;
+    frontNode = frontNode->next;
+    if (!frontNode) {
+        rearNode = nullptr;
+    }
+    delete temp;
 }
 
 template <typename T>
 T MyQueue<T>::front() const {
-    if (!queue.empty()) {
-        return queue.front();  // Return the front element without removing it
-    } else {
-        throw std::out_of_range("Queue is empty");
+    if (isEmpty()) {
+        throw std::runtime_error("Queue is empty.");
     }
+    return frontNode->data;
 }
 
 template <typename T>
 bool MyQueue<T>::isEmpty() const {
-    return queue.empty();  // Check if the queue is empty
+    return frontNode == nullptr;
 }
 
 template <typename T>
-size_t MyQueue<T>::size() const {
-    return queue.size();  // Return the size of the queue
+void MyQueue<T>::display() const {
+    if (isEmpty()) {
+        std::cout << "Queue is empty.\n";
+        return;
+    }
+    Node* temp = frontNode;
+    while (temp) {
+        std::cout << temp->data << " ";
+        temp = temp->next;
+    }
+    std::cout << std::endl;
 }
 
-// Explicit template instantiation for common types
+// Explicit template instantiation for common types (optional)
 template class MyQueue<int>;
-template class MyQueue<std::pair<int, int>>;
+template class MyQueue<double>;
+template class MyQueue<std::string>;
