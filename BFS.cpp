@@ -31,7 +31,7 @@ void BFS::search(int startX, int startY) {
 
             if (newX >= 0 && newX < grid.getRows() && newY >= 0 && newY < grid.getCols() &&
                 !visited[newX][newY] && grid(newX, newY) == '.') {
-                q.enqueue({newX, newY});  // Use MyQueue's enqueue method
+                q.enqueue({newX, newY});  
                 grid(newX, newY) = 'p';
                 visited[newX][newY] = true;
             }

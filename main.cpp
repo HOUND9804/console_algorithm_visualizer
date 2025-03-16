@@ -71,6 +71,7 @@ int main() {
                 }
                 break;
             }
+
             case 2: { // Grid functionality
                 int r, c;
                 cout << "Enter number of rows and columns for grid: ";
