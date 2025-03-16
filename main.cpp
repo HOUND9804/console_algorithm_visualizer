@@ -1,5 +1,6 @@
 #include <iostream>
 #include "AVLTree.h"
+#include "BST.h"
 #include "Grid.h"
 #include "BFS.h" 
 #include "DFS.h"
@@ -14,7 +15,7 @@ int main() {
         Color::reset();
         int choice;
         cout << "Choose an option:\n";
-        cout << "1. Use AVL Tree\n";
+        cout << "1. Use Tree\n";
         cout << "2. Use Grid\n";
         cout << "3. Use Sort\n";
         cout << "0. Exit\n";
@@ -26,21 +27,47 @@ int main() {
         }
 
         switch (choice) {
-            case 1: { // AVL Tree functionality
-                AVLTree<int> tree;
-                int n;
-                while (true) {
-                    cout<<"Enter node number : ";
-                    int nodeNum;
-                    cin>>nodeNum;
-                    for (int i = 0; i < nodeNum; i++) {
-                        cout << "Enter a number to insert into the AVL tree: ";
-                        int n;
-                        cin >> n;
-                        tree.insert(n);
-                        tree.displayTree();
+            case 1: { //Tree functionality
+                cout<<"0. BST \n";
+                cout<<"1. AVL Tree\n";
+                int op;
+                cin>>op;
+                switch(op){
+                    case 0: { 
+                        BST<int> bst;  
+                        cout << "Enter the number of nodes to insert into the BST: ";
+                        int nodeNum;
+                        cin >> nodeNum;
+            
+                        for (int i = 0; i < nodeNum; i++) {
+                            cout << "Enter a number to insert into the BST: ";
+                            int n;
+                            cin >> n;
+                            bst.insert(n);
+                            bst.displayTree();
+                        }
+                        break;
                     }
-                    break;
+            
+                    case 1: { 
+                        AVLTree<int> tree;
+                        cout << "Enter the number of nodes to insert into the AVL tree: ";
+                        int nodeNum;
+                        cin >> nodeNum;
+            
+                        for (int i = 0; i < nodeNum; i++) {
+                            cout << "Enter a number to insert into the AVL tree: ";
+                            int n;
+                            cin >> n;
+                            tree.insert(n);
+                            tree.displayTree();
+                        }
+                        break;
+                    }
+            
+                    default:
+                        cout << "Invalid option. Please enter 0 or 1.\n";
+                        break;
                 }
                 break;
             }
@@ -64,7 +91,7 @@ int main() {
                 switch (gridAction) {
                     case 1:
                         cout << "Grid contents:\n";
-                        grid.printGrid();
+                        grid.printGrid(grid.getRows()+1,grid.getCols()+1);
                         break;
                     case 2: {
                         int startX, startY;

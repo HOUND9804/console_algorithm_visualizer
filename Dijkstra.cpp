@@ -42,10 +42,7 @@ void Dijkstra::search(int startX, int startY, int endX, int endY) {
         if (visited[x][y]) continue;
         visited[x][y] = true;
 
-        // Mark the cell as visited in the grid
         grid(x, y) = 'V';
-        grid.printGrid();
-        this_thread::sleep_for(chrono::milliseconds(500));
 
         if (x == endX && y == endY) {  // Stop if the end is reached
             found = true;
@@ -64,9 +61,11 @@ void Dijkstra::search(int startX, int startY, int endX, int endY) {
                 if (newDist < distance[newX][newY]) {
                     distance[newX][newY] = newDist;
                     pq.push({newDist, {newX, newY}});
+                    grid(newX,newY)='P';
                     parent[{newX, newY}] = {x, y};  // Track the parent node
                 }
             }
+            grid.printGrid(newX,newY);
         }
     }
 
@@ -74,14 +73,13 @@ void Dijkstra::search(int startX, int startY, int endX, int endY) {
     if (found) {
         pair<int, int> step = {endX, endY};
         while (step != make_pair(startX, startY)) {
-            grid(step.first, step.second) = 'P';  // Mark path with 'P'
-            grid.printGrid();
-            this_thread::sleep_for(chrono::milliseconds(500));
+            grid(step.first, step.second) = '!';  
+            grid.printGrid(step.first,step.second);
             step = parent[step];
         }
         grid(startX, startY) = 'S';  // Start position
         grid(endX, endY) = 'E';      // End position
-        grid.printGrid();
+        grid.printGrid(grid.getRows()+1,grid.getCols()+1);
     } else {
         cout << "No path found from start to end.\n";
     }

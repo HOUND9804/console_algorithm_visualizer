@@ -21,8 +21,6 @@ void DFS::search(int startX, int startY) {
         s.pop();
 
         grid(x, y) = 'V';
-        grid.printGrid();
-        this_thread::sleep_for(chrono::milliseconds(500));
 
         vector<int> dx = {1, -1, 0, 0};  // Down, Up, Right, Left
         vector<int> dy = {0, 0, 1, -1};
@@ -37,6 +35,8 @@ void DFS::search(int startX, int startY) {
                 grid(newX,newY)='p';
                 visited[newX][newY] = true;
             }
+            grid.printGrid(newX,newY);
+            this_thread::sleep_for(chrono::milliseconds(500));
         }
     }
 }
