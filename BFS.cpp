@@ -1,6 +1,5 @@
 #include "BFS.h"
-#include <iostream>
-#include "MyQueue.h"
+#include <iostream> 
 
 BFS::BFS(Grid& g) : grid(g), visited(g.getRows(), std::vector<bool>(g.getCols(), false)) {}
 
@@ -12,8 +11,8 @@ void BFS::search(int startX, int startY) {
         return;
     }
 
-    MyQueue<pair<int, int>> q;
-    q.enqueue({startX, startY});
+    MyQueue<pair<int, int>> q;  // Change queue to MyQueue
+    q.enqueue({startX, startY}); // Use MyQueue's enqueue method
     visited[startX][startY] = true;
 
     while (!q.isEmpty()) {  // Check if MyQueue is empty

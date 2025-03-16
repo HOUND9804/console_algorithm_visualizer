@@ -1,9 +1,8 @@
 #ifndef DFS_H
 #define DFS_H
 #include "Grid.h"
-#include <queue>
+#include "MyStack.h"
 #include <vector>
-#include <thread>
 using namespace std;
 class DFS{
     private:
