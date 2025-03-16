@@ -4,9 +4,6 @@
 #include "Grid.h"
 #include "MyQueue.h"
 #include <vector>
-#include <thread>
-#include <chrono>
-
 class BFS {
 private:
     Grid& grid;
