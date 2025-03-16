@@ -48,7 +48,10 @@ int BST<T>::get_height() const {
     return height(root);
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cd61251578ea49466b81121d9ee9d329ad44874c
 template <typename T>
 typename BST<T>::Node* BST<T>::insert(Node* node, const T& value) {
     if (!node) return new Node(value);
