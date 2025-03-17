@@ -20,27 +20,31 @@ int Grid::getRows() const { return rows; }
 
 int Grid::getCols() const { return cols; }
 
-void Grid::printGrid(int x,int y) const {
+void Grid::printGrid(int x, int y) const {
     clearConsole();
-    cout<<"V represent visited cell \n";
-    cout<<"p represent the pending cell to be visited\n";
-    cout<<"The purple color represent the presently pointed cell\n \n";
-    for (int i=0;i<rows;i++) {
-        for (int j=0;j<cols;j++) {
-           char cell=grid[i][j];
-           if(cell=='V'){
-            paint.set(3);
-           }
-           else if(i==x&&j==y){
-            paint.set(5);
-           }
-           else if(cell=='p'){
-            paint.set(4);
-           }
-           else{
-            paint.reset();
-           }
-           cout<<cell<<" ";
+    cout << "V represent visited cell \n";
+    cout << "p represent the pending cell to be visited\n";
+    cout << "The purple color represent the presently pointed cell\n";
+    cout << "D represent direction\n \n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            char cell = grid[i][j];
+
+            if (cell == 'V') {
+                paint.set(3); 
+            } else if (i == x && j == y) {
+                paint.set(5); 
+            } else if (cell == 'p') {
+                paint.set(4); 
+            } 
+            else if(cell == 'D'){
+                paint.set(10);
+            }else {
+                paint.reset(); // Default color for other cells
+            }
+
+            cout << cell << " ";
+            Color::reset(); // Reset color after printing each cell
         }
         cout << endl;
     }

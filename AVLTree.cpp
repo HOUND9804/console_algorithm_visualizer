@@ -1,4 +1,5 @@
 #include "AVLTree.h"
+using namespace std;
 
 template <typename T>
 AVLTree<T>::AVLTree() : root(nullptr) {}
@@ -17,7 +18,7 @@ template <typename T>
 void AVLTree<T>::displayTree() const {
     const int depth = get_height();
     if (depth == 0) {
-        std::cout << "<empty tree>\n";
+        cout << "<empty tree>\n";
         return;
     }
 
@@ -25,7 +26,7 @@ void AVLTree<T>::displayTree() const {
     auto formatted_rows = row_formatter(rows_disp);
     trim_rows_left(formatted_rows);
     for (const auto& row : formatted_rows) {
-        std::cout << ' ' << row << '\n';
+        cout << ' ' << row << '\n';
     }
 }
 
@@ -61,8 +62,8 @@ typename AVLTree<T>::Node* AVLTree<T>::rotate_right(Node* y) {
     x->right = y;
     y->left = T2;
 
-    y->height = 1 + std::max(height(y->left), height(y->right));
-    x->height = 1 + std::max(height(x->left), height(x->right));
+    y->height = 1 + max(height(y->left), height(y->right));
+    x->height = 1 + max(height(x->left), height(x->right));
 
     return x;
 }
@@ -75,8 +76,8 @@ typename AVLTree<T>::Node* AVLTree<T>::rotate_left(Node* x) {
     y->left = x;
     x->right = T2;
 
-    x->height = 1 + std::max(height(x->left), height(x->right));
-    y->height = 1 + std::max(height(y->left), height(y->right));
+    x->height = 1 + max(height(x->left), height(x->right));
+    y->height = 1 + max(height(y->left), height(y->right));
 
     return y;
 }
@@ -93,7 +94,7 @@ typename AVLTree<T>::Node* AVLTree<T>::insert(Node* node, const T& value) {
         return node; // Duplicate values are not allowed
 
     // Update height
-    node->height = 1 + std::max(height(node->left), height(node->right));
+    node->height = 1 + max(height(node->left), height(node->right));
 
     // Get the balance factor
     int balance = get_balance(node);
@@ -120,8 +121,8 @@ typename AVLTree<T>::Node* AVLTree<T>::insert(Node* node, const T& value) {
 
 template <typename T>
 typename AVLTree<T>::display_rows AVLTree<T>::get_row_display() const {
-    std::vector<Node*> traversal_stack;
-    std::vector<std::vector<Node*>> rows;
+    vector<Node*> traversal_stack;
+    vector<vector<Node*>> rows;
     if (!root) return display_rows();
 
     Node* p = root;
@@ -159,14 +160,14 @@ typename AVLTree<T>::display_rows AVLTree<T>::get_row_display() const {
     }
 
     display_rows rows_disp;
-    std::stringstream ss;
+    stringstream ss;
     for (const auto& row : rows) {
         rows_disp.emplace_back();
         for (Node* pn : row) {
             if (pn) {
                 ss << pn->value;
                 rows_disp.back().push_back(cell_display(ss.str()));
-                ss = std::stringstream();
+                ss = stringstream();
             } else {
                 rows_disp.back().push_back(cell_display());
             }
@@ -176,8 +177,8 @@ typename AVLTree<T>::display_rows AVLTree<T>::get_row_display() const {
 }
 
 template <typename T>
-std::vector<std::string> AVLTree<T>::row_formatter(const display_rows& rows_disp) const {
-    using s_t = std::string::size_type;
+vector<string> AVLTree<T>::row_formatter(const display_rows& rows_disp) const {
+    using s_t = string::size_type;
     s_t cell_width = 0;
     for (const auto& row_disp : rows_disp) {
         for (const auto& cd : row_disp) {
@@ -189,7 +190,7 @@ std::vector<std::string> AVLTree<T>::row_formatter(const display_rows& rows_disp
     if (cell_width % 2 == 0) ++cell_width;
     if (cell_width < 3) cell_width = 3;
 
-    std::vector<std::string> formatted_rows;
+    vector<string> formatted_rows;
     s_t row_count = rows_disp.size();
     s_t row_elem_count = 1 << (row_count - 1);
     s_t left_pad = 0;
@@ -197,19 +198,19 @@ std::vector<std::string> AVLTree<T>::row_formatter(const display_rows& rows_disp
     for (s_t r = 0; r < row_count; ++r) {
         const auto& cd_row = rows_disp[row_count - r - 1];
         s_t space = (s_t(1) << r) * (cell_width + 1) / 2 - 1;
-        std::string row;
+        string row;
         for (s_t c = 0; c < row_elem_count; ++c) {
-            row += std::string(c ? left_pad * 2 + 1 : left_pad, ' ');
+            row += string(c ? left_pad * 2 + 1 : left_pad, ' ');
             if (cd_row[c].present) {
-                const std::string& valstr = cd_row[c].valstr;
+                const string& valstr = cd_row[c].valstr;
                 s_t long_padding = cell_width - valstr.length();
                 s_t short_padding = long_padding / 2;
                 long_padding -= short_padding;
-                row += std::string(c % 2 ? short_padding : long_padding, ' ');
+                row += string(c % 2 ? short_padding : long_padding, ' ');
                 row += valstr;
-                row += std::string(c % 2 ? long_padding : short_padding, ' ');
+                row += string(c % 2 ? long_padding : short_padding, ' ');
             } else {
-                row += std::string(cell_width, ' ');
+                row += string(cell_width, ' ');
             }
         }
         formatted_rows.push_back(row);
@@ -218,14 +219,14 @@ std::vector<std::string> AVLTree<T>::row_formatter(const display_rows& rows_disp
         s_t left_space = space + 1;
         s_t right_space = space - 1;
         for (s_t sr = 0; sr < space; ++sr) {
-            std::string row;
+            string row;
             for (s_t c = 0; c < row_elem_count; ++c) {
                 if (c % 2 == 0) {
-                    row += std::string(c ? left_space * 2 + 1 : left_space, ' ');
+                    row += string(c ? left_space * 2 + 1 : left_space, ' ');
                     row += cd_row[c].present ? '/' : ' ';
-                    row += std::string(right_space + 1, ' ');
+                    row += string(right_space + 1, ' ');
                 } else {
-                    row += std::string(right_space, ' ');
+                    row += string(right_space, ' ');
                     row += cd_row[c].present ? '\\' : ' ';
                 }
             }
@@ -236,17 +237,17 @@ std::vector<std::string> AVLTree<T>::row_formatter(const display_rows& rows_disp
         left_pad += space + 1;
         row_elem_count /= 2;
     }
-    std::reverse(formatted_rows.begin(), formatted_rows.end());
+    reverse(formatted_rows.begin(), formatted_rows.end());
     return formatted_rows;
 }
 
 template <typename T>
-void AVLTree<T>::trim_rows_left(std::vector<std::string>& rows) {
+void AVLTree<T>::trim_rows_left(vector<string>& rows) {
     if (!rows.size()) return;
     auto min_space = rows.front().length();
     for (const auto& row : rows) {
         auto i = row.find_first_not_of(' ');
-        if (i == std::string::npos) i = row.length();
+        if (i == string::npos) i = row.length();
         if (i == 0) return;
         if (i < min_space) min_space = i;
     }
@@ -259,4 +260,4 @@ template <typename T>
 AVLTree<T>::cell_display::cell_display() : present(false) {}
 
 template <typename T>
-AVLTree<T>::cell_display::cell_display(std::string valstr) : valstr(valstr), present(true) {}
+AVLTree<T>::cell_display::cell_display(string valstr) : valstr(valstr), present(true) {}
