@@ -12,6 +12,7 @@ private:
     std::vector<int> arr;
     std::vector<bool> colored;
 
+    string printNum(int n) const;
     void printArray(int highlightedIndex1 = -1, int highlightedIndex2 = -1) const;
     void bubbleSort();
 
