@@ -5,7 +5,7 @@
 #include "BFS.h" 
 #include "DFS.h"
 #include "Dijkstra.h"
-#include "MergeSortVisualizer.h"
+#include "MergeSortTree.h"
 #include "BubbleSortVisualizer.h"
 #include "InsertionSortVisualizer.h"
 using namespace std;
@@ -148,8 +148,8 @@ int main() {
 
                 switch (sortingOption) {
                     case 1: {
-                        MergeSortVisualizer msv(a);
-                        msv.sort(); // FIXED: Now it executes the sorting
+                        MergeSortTree<int> tree(a);
+                        tree.visualize_merge_sort();
                         break;
                     }
                     case 2: {
