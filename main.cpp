@@ -73,36 +73,39 @@ int main() {
             }
 
             case 2: { // Grid functionality
-                int r, c;
-                cout << "Enter number of rows and columns for grid: ";
-                cin >> r >> c;
-
-                Grid grid(r, c);
-                cout << "Enter the grid (use '.' for open space and '#' for blocked space):\n";
-                grid.inputGrid();
 
                 cout << "Choose grid action:\n";
-                cout << "1. Display grid\n";
-                cout << "2. Perform BFS\n";
-                cout << "3. Perform DFS\n";
-                cout << "4. Find shortest path with Dijkstra's algorithm\n";
+                cout << "1. Perform BFS\n";
+                cout << "2. Perform DFS\n";
+                cout << "3. Find shortest path with Dijkstra's algorithm\n";
                 int gridAction;
                 cin >> gridAction;
 
                 switch (gridAction) {
-                    case 1:
-                        cout << "Grid contents:\n";
-                        grid.printGrid(grid.getRows()+1,grid.getCols()+1);
-                        break;
-                    case 2: {
-                        int startX, startY;
-                        cout << "Enter starting coordinates (row and column): ";
-                        cin >> startX >> startY;
-                        BFS bfs(grid);
-                        bfs.search(startX, startY);
-                        break;
+                    case 1: {
+                        int r, c;
+                    cout << "Enter number of rows and columns for grid: ";
+                    cin >> r >> c;
+
+                    Grid grid(r, c);
+                    cout << "Enter the grid (use '.' for open space and '#' for blocked space):\n";
+                    grid.inputGrid();
+
+                    int startX, startY;
+                    cout << "Enter starting coordinates (row and column): ";
+                    cin >> startX >> startY;
+                    BFS bfs(grid);
+                    bfs.search(startX, startY);
+                    break;
                     }
-                    case 3:{
+                    case 2:{
+                        int r, c;
+                    cout << "Enter number of rows and columns for grid: ";
+                    cin >> r >> c;
+
+                    Grid grid(r, c);
+                    cout << "Enter the grid (use '.' for open space and '#' for blocked space):\n";
+                    grid.inputGrid();
                         int startX, startY;
                         cout << "Enter starting coordinates (row and column): ";
                         cin >> startX >> startY;
@@ -110,7 +113,13 @@ int main() {
                         dfs.search(startX, startY);
                         break;
                     }
-                    case 4: {
+                    case 3: {
+                        int r, c;
+                    cout << "Enter number of rows and columns for grid: ";
+                    cin >> r >> c;
+                    Grid grid(r, c);
+                    cout << "Enter the grid (use 1,2...9 for weight of the cell and open space and '#' for blocked space):\n";
+                    grid.inputGrid();
                         int startX, startY, endX, endY;
                         cout << "Enter starting coordinates (row and column): ";
                         cin >> startX >> startY;
@@ -129,11 +138,12 @@ int main() {
             }
             
             case 3:{
-                cout<<"Enter an array of length less than 20 \n";
+                cout<<"Enter an array of length less than 15 \n";
                 cout<<"Enter size of the array \n";
                 int n;
                 cin>>n;
                 cout<<"Enter the array\n";
+                cout<<"Enter number greater than 0 and smaller than 20";
                 vector<int>a(n);
                 for(int i=0;i<n;i++){
                     cin>>a[i];
