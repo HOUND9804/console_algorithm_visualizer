@@ -143,7 +143,7 @@ int main() {
                 int n;
                 cin>>n;
                 cout<<"Enter the array\n";
-                cout<<"Enter number greater than 0 and smaller than 20";
+                cout<<"Enter number greater than 0 and smaller than 20 \n";
                 vector<int>a(n);
                 for(int i=0;i<n;i++){
                     cin>>a[i];
