@@ -138,16 +138,6 @@ int main() {
             }
             
             case 3:{
-                cout<<"Enter an array of length less than 15 \n";
-                cout<<"Enter size of the array \n";
-                int n;
-                cin>>n;
-                cout<<"Enter the array\n";
-                cout<<"Enter number greater than 0 and smaller than 20 \n";
-                vector<int>a(n);
-                for(int i=0;i<n;i++){
-                    cin>>a[i];
-                }
                 cout << "Choose an option:\n";
                 cout << "1. Use Merge Sort\n";
                 cout << "2. Use Bubble Sort\n";
@@ -158,16 +148,45 @@ int main() {
 
                 switch (sortingOption) {
                     case 1: {
+                        cout<<"Enter an array of length less than 15 \n";
+                        cout<<"Enter size of the array \n";
+                        int n;
+                        cin>>n;
+                        cout<<"Enter the array\n";
+                        vector<int>a(n);
+                        for(int i=0;i<n;i++){
+                            cin>>a[i];
+                        }
                         MergeSortTree<int> tree(a);
                         tree.visualize_merge_sort();
                         break;
                     }
                     case 2: {
+                        cout<<"Enter an array of length less than 15 \n";
+                        cout<<"Enter size of the array \n";
+                        int n;
+                        cin>>n;
+                        cout<<"Enter the array\n";
+                        cout<<"Enter number greater than 0 and smaller than 20 \n";
+                        vector<int>a(n);
+                        for(int i=0;i<n;i++){
+                            cin>>a[i];
+                        }
                         BubbleSortVisualizer bsv(a);
                         bsv.sort();
                         break;
                     }
                     case 3: {
+                        cout<<"Enter an array of length less than 15 \n";
+                        cout<<"Enter size of the array \n";
+                        int n;
+                        cin>>n;
+                        cout<<"Enter the array\n";
+                        cout<<"Enter number greater than 0 and smaller than 20 \n";
+                        vector<int>a(n);
+                        for(int i=0;i<n;i++){
+                            cin>>a[i];
+                        }
                         InsertionSortVisualizer isv(a);
                         isv.sort();
                         break;
