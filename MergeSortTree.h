@@ -53,8 +53,8 @@ public:
                     // Display the tree with highlighted nodes
                     cout << "\033[H\033[J";  // Clear screen
                     display_tree();
-                    cout<<"M represent merging\n";
-                    cout<<"* represent already merged\n";
+                    cout << "Red color represents nodes being merged\n";
+                    cout << "Purple color represents already merged nodes\n";
                     cout << "\nMerging subarrays at level " << level << "...\n";
                     wait_for_space();
                     
@@ -134,24 +134,33 @@ private:
         // Prepare the display grid
         vector<string> display(tree_height * 2, string(console_width, ' '));
         
-        // Fill in the display grid
-        fill_display(display, root, 0, 0, console_width);
+        // Prepare a grid to track the status of each character
+        vector<vector<int>> status_grid(tree_height * 2, vector<int>(console_width, 0));
+        // 0: Normal, 1: Merging, 2: Merged
         
-        // Print the display grid
-        for (const auto& line : display) {
-            for(auto& c:line){
-                if(c=='M'){
-                    Color::set(4);
-                    cout<<c;
-                }
-                else{
+        // Fill in the display grid and status grid
+        fill_display(display, status_grid, root, 0, 0, console_width);
+        
+        // Print the display grid with appropriate colors
+        for (size_t i = 0; i < display.size(); ++i) {
+            for (size_t j = 0; j < display[i].length(); ++j) {
+                char c = display[i][j];
+                
+                // Set color based on status
+                if (status_grid[i][j] == 1) {
+                    Color::set(4);  // Red for merging
+                } else if (status_grid[i][j] == 2) {
+                    Color::set(5);  // Purple for merged
+                } else {
                     Color::reset();
-                    cout<<c;
                 }
                 
+                cout << c;
             }
-            cout<<endl;
+            cout << endl;
         }
+        
+        Color::reset();  // Reset color at the end
     }
 
     void wait_for_space() {
@@ -217,7 +226,8 @@ private:
         return ss.str();
     }
     
-    void fill_display(vector<string>& display, Node* node, int depth, int start, int end) {
+    void fill_display(vector<string>& display, vector<vector<int>>& status_grid, Node* node, 
+                      int depth, int start, int end) {
         if (!node) return;
         
         int mid = (start + end) / 2;
@@ -226,18 +236,16 @@ private:
         // Center the node string
         int node_start = mid - node_str.length() / 2;
         
-        // Add the node string to the display
-        if (node->is_merging || node->is_merged) {
-            display[depth].replace(node_start, node_str.length(), node_str);
-            
-            if (node_start + node_str.length() + 1 < display[depth].length()) {
-                display[depth][node_start + node_str.length() + 1] = node->is_merging ? 'M' : '*';
-            }
-        } else {
-            for (size_t i = 0; i < node_str.length(); ++i) {
-                if (node_start + i < display[depth].length()) {
-                    display[depth][node_start + i] = node_str[i];
-                }
+        // Determine the status of this node
+        int status = 0;  // Normal
+        if (node->is_merging) status = 1;  // Merging
+        else if (node->is_merged) status = 2;  // Merged
+        
+        // Add the node string to the display and update status grid
+        for (size_t i = 0; i < node_str.length(); ++i) {
+            if (node_start + i < display[depth].length()) {
+                display[depth][node_start + i] = node_str[i];
+                status_grid[depth][node_start + i] = status;
             }
         }
         
@@ -247,9 +255,10 @@ private:
             for (int i = 1; i <= (mid - left_mid) / 2; ++i) {
                 if (mid - i < display[depth + 1].length()) {
                     display[depth + 1][mid - i] = '/';
+                    status_grid[depth + 1][mid - i] = status;
                 }
             }
-            fill_display(display, node->left, depth + 2, start, mid);
+            fill_display(display, status_grid, node->left, depth + 2, start, mid);
         }
         
         if (node->right) {
@@ -257,9 +266,10 @@ private:
             for (int i = 1; i <= (right_mid - mid) / 2; ++i) {
                 if (mid + i <= display[depth + 1].length()) {         
                     display[depth + 1][mid + i] = '\\';
+                    status_grid[depth + 1][mid + i] = status;
                 }
             }
-            fill_display(display, node->right, depth + 2, mid, end);
+            fill_display(display, status_grid, node->right, depth + 2, mid, end);
         }
     }
 };

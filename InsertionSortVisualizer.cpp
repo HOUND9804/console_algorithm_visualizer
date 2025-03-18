@@ -1,7 +1,5 @@
 #include "InsertionSortVisualizer.h"
-#include <algorithm> 
-#include <chrono>    
-#include <thread>    
+#include <algorithm>    
 
 using namespace std;
 
@@ -68,7 +66,7 @@ void InsertionSortVisualizer::insertionSort() {
         while (j >= 0 && arr[j] > key) {
             arr[j + 1] = arr[j];
             printArray(j, j + 1, key); // Highlight movement
-            this_thread::sleep_for(chrono::milliseconds(1000));
+            this_thread::sleep_for(chrono::milliseconds(2000));
             --j;
         }
         arr[j + 1] = key;
